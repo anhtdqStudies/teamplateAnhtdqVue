@@ -42,7 +42,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
@@ -74,5 +74,12 @@ module.exports = {
       );
     }),
     require("@tailwindcss/line-clamp"),
+    function ({ addBase }) {
+      addBase({
+        ".el-button": {
+          "background-color": "var(--el-button-bg-color,var(--el-color-white))",
+        },
+      });
+    },
   ],
 };

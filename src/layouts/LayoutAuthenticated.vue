@@ -12,6 +12,7 @@ import NavBar from "@/components/NavBar.vue";
 import NavBarItemPlain from "@/components/NavBarItemPlain.vue";
 import AsideMenu from "@/components/AsideMenu.vue";
 import FooterBar from "@/components/FooterBar.vue";
+import logoutApi from "./api/logoutApi";
 
 useMainStore().setUser({
   name: "John Doe",
@@ -40,7 +41,14 @@ const menuClick = (event, item) => {
   }
 
   if (item.isLogout) {
-    //
+    logoutApi
+      .logout()
+      .then(() => {
+        router.push("/");
+        localStorage.removeItem("dataLogin");
+        logoutApi.removeAuthorizationHeaders();
+      })
+      .catch(() => {});
   }
 };
 </script>

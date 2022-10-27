@@ -1,15 +1,13 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Style from "@/views/StyleView.vue";
-import Home from "@/views/HomeView.vue";
-
+import Login from "@/module/login/view/LoginView.vue";
 const routes = [
   {
     meta: {
-      title: "Select style",
+      title: "Login",
     },
     path: "/",
-    name: "style",
-    component: Style,
+    name: "login",
+    component: Login,
   },
   {
     // Document title tag
@@ -19,7 +17,7 @@ const routes = [
     },
     path: "/dashboard",
     name: "dashboard",
-    component: Home,
+    component: () => import("@/views/HomeView.vue"),
   },
   {
     meta: {
@@ -27,7 +25,7 @@ const routes = [
     },
     path: "/tables",
     name: "tables",
-    component: () => import("@/views/TablesView.vue"),
+    component: () => import("@/views/HomeView.vue"),
   },
   {
     meta: {
@@ -40,6 +38,7 @@ const routes = [
   {
     meta: {
       title: "Profile",
+      transition: "slide-left",
     },
     path: "/profile",
     name: "profile",
@@ -55,20 +54,21 @@ const routes = [
   },
   {
     meta: {
+      title: "Select style",
+    },
+    path: "/styles",
+    name: "style",
+    component: () => import("@/views/StyleView.vue"),
+  },
+  {
+    meta: {
       title: "Responsive layout",
     },
     path: "/responsive",
     name: "responsive",
     component: () => import("@/views/ResponsiveView.vue"),
   },
-  {
-    meta: {
-      title: "Login",
-    },
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
-  },
+
   {
     meta: {
       title: "Error",
@@ -85,6 +85,14 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { top: 0 };
   },
+});
+
+router.beforeEach(async (to, from) => {
+  var dataLogin = localStorage.getItem("dataLogin");
+
+  if (!dataLogin && to.name !== "login") {
+    return { name: "login" };
+  }
 });
 
 export default router;

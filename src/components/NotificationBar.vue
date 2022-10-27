@@ -6,6 +6,8 @@ import BaseLevel from "@/components/BaseLevel.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
+const emit = defineEmits(["dismissNotification"]);
+
 const props = defineProps({
   icon: {
     type: String,
@@ -16,16 +18,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  isDismissed: Boolean,
 });
 
 const componentClass = computed(() =>
   props.outline ? colorsOutline[props.color] : colorsBgLight[props.color]
 );
 
-const isDismissed = ref(false);
-
 const dismiss = () => {
-  isDismissed.value = true;
+  emit("dismissNotification", true);
 };
 
 const slots = useSlots();
@@ -37,7 +38,7 @@ const hasRightSlot = computed(() => slots.right);
   <div
     v-if="!isDismissed"
     :class="componentClass"
-    class="px-3 py-6 md:py-3 mb-6 last:mb-0 border rounded-lg transition-colors duration-150"
+    class="px-3 py-6 md:py-2 last:mb-0 border rounded-lg transition-colors duration-150"
   >
     <BaseLevel>
       <div class="flex flex-col md:flex-row items-center">

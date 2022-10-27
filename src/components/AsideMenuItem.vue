@@ -7,6 +7,8 @@ import { getButtonColor } from "@/colors.js";
 import BaseIcon from "@/components/BaseIcon.vue";
 import AsideMenuList from "@/components/AsideMenuList.vue";
 
+const auth = "admin";
+
 const props = defineProps({
   item: {
     type: Object,
@@ -48,6 +50,7 @@ const menuClick = (event) => {
 <template>
   <li>
     <component
+      v-if="item.permissions?.includes(auth)"
       :is="item.to ? RouterLink : 'a'"
       v-slot="vSlot"
       :to="item.to ?? null"

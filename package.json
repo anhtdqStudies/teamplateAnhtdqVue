@@ -8,10 +8,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "@mdi/js": "^7.0.96",
     "@rushstack/eslint-patch": "^1.1.4",
     "axios": "^0.27.0",
     "chart.js": "^3.6.0",
+    "element-plus": "^2.2.19",
     "numeral": "^2.0.6",
     "pinia": "^2.0.13",
     "vue": "^3.0.0",
@@ -30,6 +32,9 @@
     "postcss-import": "^14.0.2",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.0.14",
+    "unplugin-auto-import": "^0.11.3",
+    "unplugin-icons": "^0.14.12",
+    "unplugin-vue-components": "^0.22.9",
     "vite": "^3.0.9"
   }
 }
