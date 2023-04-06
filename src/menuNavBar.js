@@ -65,7 +65,6 @@ export default [
     icon: mdiReact,
     label: "React version",
     isDesktopNoLabel: true,
-    href: "https://github.com/justboil/admin-one-react-tailwind",
     target: "_blank",
   },
   {
